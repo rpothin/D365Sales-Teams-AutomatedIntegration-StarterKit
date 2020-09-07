@@ -4,6 +4,7 @@
 # - CommitMessage: Commit message
 # - ServiceConnectionName: Service Connection to use (the one associated to the dev environment targeted)
 # - SolutionName: Name of the solution targeted
+# - GitHubPAT: Your GitHub PAT
 
 trigger: none # Pipeline triggered manually
 
@@ -47,14 +48,24 @@ steps:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     SolutionTargetFolder: 'UnmanagedSolutionsUnpacked/$(SolutionName)'
 
+# Comfigure agent to be able to push to GitHub repository
+- task: CmdLine@2
+  inputs:
+    script: git config --global credential.helper store
+
+- powershell: Add-Content -Path "$HOME\.git-credentials" -Value "https://$(GitHubPAT):x-oauth-basic@github.com`n" -NoNewline
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      git config user.email "$(Email)"
+      git config user.name "rpothin"
+
 # Commit unpack unmanaged solution we got in the previous task
 - task: CmdLine@2
   inputs:
     script: |
       echo commit all changes
-      git config user.email "$(Email)"
-      git config user.name "Automatic Build"
-
       echo branch full name $(branchName)
       git checkout $(branchName)
       git add --all
