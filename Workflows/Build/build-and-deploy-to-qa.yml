@@ -2,6 +2,8 @@
 # No input variables
 
 # Pipeline automatically triggered when a new pull request targetting the main branch is created
+trigger: none
+
 pr:
   branches:
     include:
