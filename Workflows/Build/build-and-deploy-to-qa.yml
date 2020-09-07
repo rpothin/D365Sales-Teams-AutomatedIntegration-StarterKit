@@ -56,6 +56,9 @@ stages:
         vmImage: 'windows-2019'
 
       steps:
+      # Remove file with environment variable values in the agent context to pack unmanaged solution without it
+      - powershell: Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+      
       # Install the Power Platform Build Tools
       - task: PowerPlatformToolInstaller@0
         inputs:
@@ -79,19 +82,19 @@ stages:
         displayName: 'Publish unmanaged solution for later use in the pipeline'
         artifact: dropUnmanagedSolution
 
-# Stage for deployment of the unmnaged solution to a Build environment
+# Stage for deployment of the unmnaged solution to a QA environment
 # This stage runs only if 'SolutionCheck' stage is succeeded
-- stage: 'DeployToBuild'
-  displayName: 'Deploy the unmanaged solution to a Build environment'
+- stage: 'DeployToQA'
+  displayName: 'Deploy the unmanaged solution to a QA environment'
   dependsOn: SolutionCheck
   condition: succeeded()
   jobs:
-    - deployment: 'DeployToBuild'
+    - deployment: 'DeployToQA'
       pool:
         name: Azure Pipelines
         vmImage: 'windows-2019'
 
-      environment: 'Build'
+      environment: 'QA'
 
       strategy:
         runOnce:
@@ -101,16 +104,16 @@ stages:
               - download: current
                 artifact: dropUnmanagedSolution
 
-              # Install the Power Platform Build Tools
+              # Install the Power Platform QA Tools
               - task: PowerPlatformToolInstaller@0
                 inputs:
                   DefaultVersion: true
 
-              # Import the unmanaged solution to the Build environment
+              # Import the unmanaged solution to the QA environment
               - task: PowerPlatformImportSolution@0
                 inputs:
                   authenticationType: 'PowerPlatformSPN'
-                  PowerPlatformSPN: 'PowerPanda - Build'
+                  PowerPlatformSPN: 'QA'
                   SolutionInputFile: '$(Pipeline.Workspace)\dropUnmanagedSolution\$(SolutionName).zip'
                   AsyncOperation: true
                   MaxAsyncWaitTime: '240'
@@ -119,4 +122,52 @@ stages:
               - task: PowerPlatformPublishCustomizations@0
                 inputs:
                   authenticationType: 'PowerPlatformSPN'
-                  PowerPlatformSPN: 'PowerPanda - Build'
+                  PowerPlatformSPN: 'QA'
+
+# Stage for the commit of the removal of the file with environment variable values to repo
+# This stage runs only if 'DeployToQA' stage is succeeded
+- stage: 'RemoveEnvironmentVariableValues'
+  displayName: 'Remove file with environment variable values'
+  dependsOn: DeployToQA
+  condition: succeeded()
+  jobs:
+    - deployment: 'RemoveEnvironmentVariableValues'
+      pool:
+        name: Azure Pipelines
+        vmImage: 'windows-2019'
+
+      environment: 'ManualApproval'
+
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              # Remove file with environment variable values in the agent context to pack unmanaged solution without it
+              - powershell: Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+
+              # Comfigure agent to be able to push to GitHub repository
+              - task: CmdLine@2
+                inputs:
+                  script: git config --global credential.helper store
+
+              - powershell: Add-Content -Path "$HOME\.git-credentials" -Value "https://$(GitHubPAT):x-oauth-basic@github.com`n" -NoNewline
+
+              - task: CmdLine@2
+                inputs:
+                  script: |
+                    git config user.email "$(Email)"
+                    git config user.name "rpothin"
+
+              # Commit unpack unmanaged solution we got in the previous task
+              - task: CmdLine@2
+                inputs:
+                  script: |
+                    echo commit all changes
+                    echo branch full name $(branchName)
+                    git checkout $(branchName)
+                    git add --all
+                    git commit -m "$(CommitMessage)"
+                      
+                    echo push code to new repo
+                    git push origin $(branchName)
+                  displayName: 'Commit Solution Files to Source Control'
