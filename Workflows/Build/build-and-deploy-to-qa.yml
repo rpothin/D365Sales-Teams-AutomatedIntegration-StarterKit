@@ -1,5 +1,7 @@
 # Quality check of a work branch before merge with the main branch in the context of a pull request
-# No input variables
+
+# Input variables:
+# - GitHubPAT: Your GitHub PAT
 
 # Pipeline automatically triggered when a new pull request targetting the main branch is created
 trigger: none
@@ -166,7 +168,7 @@ stages:
                     echo branch full name $(branchName)
                     git checkout $(branchName)
                     git add --all
-                    git commit -m "$(CommitMessage)"
+                    git commit -m "Removal of the files with the environment variable values"
                       
                     echo push code to new repo
                     git push origin $(branchName)
