@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definition IntroducedVersion="1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SchemaName>rpo_OrganizationID</SchemaName>
+  <IsRequired>0</IsRequired>
+  <Type>100000000</Type>
+  <DefaultValue xsi:nil="true"></DefaultValue>
+  <DisplayName>
+    <LocalizedNames>
+      <LocalizedName description="OrganizationID" languagecode="1033" />
+    </LocalizedNames>
+  </DisplayName>
+  <Description>
+    <LocalizedNames>
+      <LocalizedName description="ID to put in the &quot;Collaboration piped entity id which was used to pin the record&quot; field value of the Microsoft Teams Collaboration record" languagecode="1033" />
+    </LocalizedNames>
+  </Description>
+</Definition>

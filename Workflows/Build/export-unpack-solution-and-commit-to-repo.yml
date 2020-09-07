@@ -46,7 +46,7 @@ steps:
 - task: PowerPlatformUnpackSolution@0
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
-    SolutionTargetFolder: 'UnmanagedSolutionsUnpacked/$(SolutionName)'
+    SolutionTargetFolder: 'SolutionsUnpacked/$(SolutionName)'
 
 # Comfigure agent to be able to push to GitHub repository
 - task: CmdLine@2
