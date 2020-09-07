@@ -59,7 +59,15 @@ stages:
 
       steps:
       # Remove file with environment variable values in the agent context to pack unmanaged solution without it
-      - powershell: Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+      - powershell: |
+          Write-Host "File with environment variable value removal"
+          Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+
+          Write-Host "Delete nodes regarding environment variable values in Solution.xml file"
+          [xml]$data = Get-Content $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\Other\Solution.xml
+          $data.SelectNodes("//RootComponent[@type = '381']") | % {$_.ParentNode.removechild($_) } | Out-Null
+          $data.objects.object.property
+          $data.Save("$(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\Other\Solution.xml")
       
       # Install the Power Platform Build Tools
       - task: PowerPlatformToolInstaller@0
@@ -145,7 +153,15 @@ stages:
           deploy:
             steps:
               # Remove file with environment variable values in the agent context to pack unmanaged solution without it
-              - powershell: Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+              - powershell: |
+                  Write-Host "File with environment variable value removal"
+                  Remove-Item $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
+
+                  Write-Host "Delete nodes regarding environment variable values in Solution.xml file"
+                  [xml]$data = Get-Content $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\Other\Solution.xml
+                  $data.SelectNodes("//RootComponent[@type = '381']") | % {$_.ParentNode.removechild($_) } | Out-Null
+                  $data.objects.object.property
+                  $data.Save("$(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\Other\Solution.xml")
 
               # Comfigure agent to be able to push to GitHub repository
               - task: CmdLine@2
