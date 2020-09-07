@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Connector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <connectorid>847eff5e-40e5-41a2-bacd-f30abdbc7957</connectorid>
+  <description>Custom connector to use MS Graph API</description>
+  <displayname>MS Graph API Custom</displayname>
+  <iconbrandcolor>#007ee5</iconbrandcolor>
+  <name>rpo_5Fms-20graph-20api-20custom</name>
+  <connectortype>1</connectortype>
+  <openapidefinition>/Connector/rpo_5Fms-20graph-20api-20custom_openapidefinition.json</openapidefinition>
+  <connectionparameters>/Connector/rpo_5Fms-20graph-20api-20custom_connectionparameters.json</connectionparameters>
+  <policytemplateinstances>/Connector/rpo_5Fms-20graph-20api-20custom_policytemplateinstances.json</policytemplateinstances>
+  <iconblob>/Connector/rpo_5Fms-20graph-20api-20custom_iconblob.Jpeg</iconblob>
+</Connector>
