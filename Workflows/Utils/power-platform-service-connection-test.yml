@@ -3,7 +3,8 @@
 # Variables to define when creating the pipeline in Azure DevOps
 # ServiceConnectionName - String - Not secret - Let user override
 
-trigger: none
+trigger: none # Pipeline triggered manually
+pr: none # Pipeline not triggered on a pull request
 
 pool:
   vmImage: 'windows-2019'

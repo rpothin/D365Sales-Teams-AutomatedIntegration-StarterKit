@@ -7,6 +7,7 @@
 # - GitHubPAT: Your GitHub PAT
 
 trigger: none # Pipeline triggered manually
+pr: none # Pipeline not triggered on a pull request
 
 name: $[ variables['branchName'] ]
 
