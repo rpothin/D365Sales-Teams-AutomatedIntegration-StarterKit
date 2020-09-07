@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityMaps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityMap>
+    <EntitySource>lead</EntitySource>
+    <EntityTarget>opportunity</EntityTarget>
+    <AttributeMaps>
+      <AttributeMap>
+        <AttributeSource>rpo_teamid</AttributeSource>
+        <AttributeTarget>rpo_teamid</AttributeTarget>
+      </AttributeMap>
+      <AttributeMap>
+        <AttributeSource>rpo_teamschannelid</AttributeSource>
+        <AttributeTarget>rpo_teamschannelid</AttributeTarget>
+      </AttributeMap>
+      <AttributeMap>
+        <AttributeSource>rpo_teamstabid</AttributeSource>
+        <AttributeTarget>rpo_teamstabid</AttributeTarget>
+      </AttributeMap>
+    </AttributeMaps>
+  </EntityMap>
+</EntityMaps>

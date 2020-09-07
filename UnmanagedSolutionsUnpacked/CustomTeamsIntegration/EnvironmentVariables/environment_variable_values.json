@@ -1,0 +1,49 @@
+{
+  "EnvironmentVariableValues": [
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_EnvironmentDomain",
+      "EnvironmentVariableValueId": "a7867f7a-91ed-ea11-a815-000d3a0c24f7",
+      "Value": "teams-integration.crm3.dynamics.com"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_SalesHubAppID",
+      "EnvironmentVariableValueId": "72e4dd96-91ed-ea11-a815-000d3a0c24f7",
+      "Value": "aece20d6-3be7-ea11-a817-000d3a0c1215"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_Dynamics365TeamsTabRemoveURL",
+      "EnvironmentVariableValueId": "414c4c14-92ed-ea11-a815-000d3a0c24f7",
+      "Value": "https://msteamstabintegration.crm.dynamics.com/Home/Bootstrapper#pageType=tab-remove"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_TenantID",
+      "EnvironmentVariableValueId": "5ebfe029-92ed-ea11-a815-000d3a0c24f7",
+      "Value": "77cd5e96-4072-4469-90f9-b237c398c97b"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_Dynamics365AppForTeamsID",
+      "EnvironmentVariableValueId": "686c225e-92ed-ea11-a815-000d3a0c24f7",
+      "Value": "cd2d8695-bdc9-4d8e-9620-cc963ed81f41"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_Dynamics365AppForTeamsODataBind",
+      "EnvironmentVariableValueId": "eed0de97-92ed-ea11-a815-000d3a0c24f7",
+      "Value": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/cd2d8695-bdc9-4d8e-9620-cc963ed81f41"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_OrganizationID",
+      "EnvironmentVariableValueId": "587ed1e1-92ed-ea11-a815-000d3a0c24f7",
+      "Value": "218ca764-e6ce-4cfc-97f7-df1e885206a2"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_DefaultSalesTeamID",
+      "EnvironmentVariableValueId": "a88de8cb-adee-ea11-a815-000d3a0c24f7",
+      "Value": "67ea265f-e9b4-4819-bc48-a98255cd0cd7"
+    },
+    {
+      "EnvironmentVariableDefinition.SchemaName": "rpo_DefaultProspectionTeamChannelID",
+      "EnvironmentVariableValueId": "2c362403-aeee-ea11-a815-000d3a0c24f7",
+      "Value": "19:57e1e7ecf9a4416d8627b9509d6d42ac@thread.tacv2"
+    }
+  ]
+}
