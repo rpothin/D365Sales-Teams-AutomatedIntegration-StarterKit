@@ -160,20 +160,14 @@ stages:
                   script: git config --global credential.helper store
 
               - powershell: Add-Content -Path "$HOME\.git-credentials" -Value "https://$(GitHubPAT):x-oauth-basic@github.com`n" -NoNewline
-
-              - task: CmdLine@2
-                inputs:
-                  script: |
-                    echo Start Test
-                    ls
-                    
-                    git config user.email "$(Email)"
-                    git config user.name "rpothin"
-
+              
               # Commit unpack unmanaged solution we got in the previous task
               - task: CmdLine@2
                 inputs:
                   script: |
+                    git config user.email "$(Email)"
+                    git config user.name "rpothin"
+
                     echo commit all changes
                     echo branch full name $(branchName)
                     git checkout $(branchName)
