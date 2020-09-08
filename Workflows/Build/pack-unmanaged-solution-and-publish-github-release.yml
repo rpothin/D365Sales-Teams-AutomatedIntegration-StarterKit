@@ -16,6 +16,10 @@ trigger:
 variables:
 - name: SolutionName
   value: CustomTeamsIntegration
+- name: GitHubConnectionName
+  value: GitHub - Rpothin PAT
+- name: GitHubRepositoryName
+  value: rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit
 
 # Stage for:
 # - the build an unmanaged solution from the files in the main branch
@@ -66,3 +70,16 @@ variables:
               # Get artifacts built in the previous stage with the unmanaged solution
               - download: current
                 artifact: dropUnmanagedSolution
+
+              # Create GitHub Release
+              - task: GithubRelease@0 
+                displayName: 'Create GitHub Release'      
+                inputs:
+                  gitHubConnection: $(GitHubConnectionName)
+                  repositoryName: $(GitHubRepositoryName)
+                  action: create
+                  tagSource: manual
+                  tag: $(Build.BuildNumber)
+                  title: $(Build.BuildNumber)
+                  assets: |
+                    $(Pipeline.Workspace)\dropUnmanagedSolution\$(SolutionName).zip

@@ -154,6 +154,8 @@ stages:
         runOnce:
           deploy:
             steps:
+              - checkout: self
+
               # Configure agent to be able to push to GitHub repository
               - task: CmdLine@2
                 inputs:
@@ -161,9 +163,18 @@ stages:
 
               - powershell: Add-Content -Path "$HOME\.git-credentials" -Value "https://$(GitHubPAT):x-oauth-basic@github.com`n" -NoNewline
               
-              # Commit unpack unmanaged solution we got in the previous task
-              - checkout: self
+              # Remove file with environment variable values in the agent context to pack unmanaged solution without it
+              - powershell: |
+                  Write-Host "File with environment variable value removal"
+                  Remove-Item $(EnvironmentVariableValuesFilePath)
 
+                  Write-Host "Delete nodes regarding environment variable values in Solution.xml file"
+                  [xml]$data = Get-Content $(SolutionXmlFilePath)
+                  $data.SelectNodes("//RootComponent[@type = '381']") | % {$_.ParentNode.removechild($_) } | Out-Null
+                  $data.objects.object.property
+                  $data.Save("$(SolutionXmlFilePath)")
+              
+              # Commit unpack unmanaged solution we got in the previous task
               - task: CmdLine@2
                 inputs:
                   script: |
