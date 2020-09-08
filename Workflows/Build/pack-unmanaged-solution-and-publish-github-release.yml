@@ -14,7 +14,8 @@ trigger:
     - README.md
 
 variables:
-  SolutionName: CustomTeamsIntegration
+- name: SolutionName
+  value: CustomTeamsIntegration
 
 # Stage for:
 # - the build an unmanaged solution from the files in the main branch
@@ -65,5 +66,3 @@ variables:
               # Get artifacts built in the previous stage with the unmanaged solution
               - download: current
                 artifact: dropUnmanagedSolution
-
-              

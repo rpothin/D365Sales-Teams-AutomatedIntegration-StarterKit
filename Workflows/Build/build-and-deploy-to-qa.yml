@@ -162,6 +162,8 @@ stages:
               - powershell: Add-Content -Path "$HOME\.git-credentials" -Value "https://$(GitHubPAT):x-oauth-basic@github.com`n" -NoNewline
               
               # Commit unpack unmanaged solution we got in the previous task
+              - checkout: self
+
               - task: CmdLine@2
                 inputs:
                   script: |
