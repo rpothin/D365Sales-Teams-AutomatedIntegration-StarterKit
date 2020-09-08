@@ -24,6 +24,7 @@ variables:
 - name: GitHubRepositoryName
   value: rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit
 
+stages:
 # Stage for:
 # - the build an unmanaged solution from the files in the main branch
 - stage: 'BuildUnmanagedSolution'
