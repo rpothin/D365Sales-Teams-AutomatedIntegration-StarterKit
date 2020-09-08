@@ -49,7 +49,7 @@ steps:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     SolutionTargetFolder: 'SolutionsUnpacked/$(SolutionName)'
 
-# Comfigure agent to be able to push to GitHub repository
+# Configure agent to be able to push to GitHub repository
 - task: CmdLine@2
   inputs:
     script: git config --global credential.helper store
