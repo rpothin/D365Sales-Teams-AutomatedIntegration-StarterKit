@@ -3,12 +3,8 @@
 <p align="center">
     <a href="#repolicense" alt="Repository License">
         <img src="https://img.shields.io/github/license/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?color=yellow&label=License" /></a>
-    <a href="#issues" alt="Issues">
-        <img src="https://img.shields.io/github/issues/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?color=blue&label=Issues" /></a>
     <a href="#openissues" alt="Open Issues">
         <img src="https://img.shields.io/github/issues-raw/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?label=Open%20Issues" /></a>
-    <a href="#pr" alt="Pull Requests">
-        <img src="https://img.shields.io/github/issues-pr/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?color=blue&label=Pull%20Requests" /></a>
     <a href="#openpr" alt="Open Pull Requests">
         <img src="https://img.shields.io/github/issues-pr-raw/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?label=Open%20Pull%20Requests" /></a>
 </p>
