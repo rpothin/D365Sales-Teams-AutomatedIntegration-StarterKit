@@ -1,6 +1,7 @@
 # Pipeline automatically triggered when their is a commit in the 'SolutionsUnpacked' folder of the main branch to generate a GitHub release
 # No input variables
 
+# Pipeline automatically triggered when there is a commit on the main branch
 trigger:
   branches:
     include:
@@ -12,6 +13,8 @@ trigger:
     - Workflows/*
     - LICENSE
     - README.md
+
+pr: none # Pipeline not triggered on a pull request
 
 variables:
 - name: SolutionName
