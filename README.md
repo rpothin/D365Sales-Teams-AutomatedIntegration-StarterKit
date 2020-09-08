@@ -22,6 +22,9 @@
         <img src="https://img.shields.io/github/stars/rpothin/D365Sales-Teams-AutomatedIntegration-StarterKit?style=social" /></a>
 </p>
 
+> **Important**
+> This solution used preview features (like the *Create a channel* action in flow), so it should not be used on a production environment for now.
+
 The goal of this project is to provide to the `Power Platform community` a `kit` that will `help people automate the integration between Dynamics 365 Sales and Microsoft Teams`.
 
 The idea behind this kit is to make the life of your Dynamics 365 Sales users easier by bringing your sales records directly in Microsoft Teams.
