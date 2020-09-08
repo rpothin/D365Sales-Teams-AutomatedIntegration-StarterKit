@@ -12,9 +12,9 @@ pr:
     - main
   paths:
     include:
-    - SolutionsUnpacked/
+    - SolutionsUnpacked/*
     exclude:
-    - Workflows/
+    - Workflows/*
     - LICENSE
     - README.md
 
