@@ -30,11 +30,24 @@ So, if you want to leverage collaboration to improve your sales, this starter ki
 
 ## Prerequisites
 
-*Work in progress!*
+- Enable **Microsoft Teams integration** feature in Sales Hub settings
+- Enable **Enable Enhanced Microsoft Teams integration (requires tenant admin permissions)** in *Settings > Administration > System Settings > General > Microsoft Teams Integration*
+- An application registered in Azure Active Directory with the permissions below:
+    - Channel.Create
+    - Group.Read.All
+    - TeamsApp.ReadWrite.All
+    - TeamsTab.ReadWrite.All
 
 ## How to deploy the Dynamics 365 Sales / Teams Automated Integration Starter Kit?
 
-*Work in progress!*
+- Import the **CustomTeamsIntegration** solution provided in the last release
+- Set environment variable values
+- Configure the security tab of the **MS Graph API Custom** connector
+- Update the connections in each flow in the solution in the following order:
+	- **Service - Get Environment Variable Value**
+	- Other **Service%** flows
+	- The rest of the flows
+- Turn on the flows in the solution
 
 ## Contributing to the Dynamics 365 Sales / Teams Automated Integration Starter Kit project
 
