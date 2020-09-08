@@ -164,6 +164,9 @@ stages:
               - task: CmdLine@2
                 inputs:
                   script: |
+                    echo Start Test
+                    ls
+                    
                     git config user.email "$(Email)"
                     git config user.name "rpothin"
 
