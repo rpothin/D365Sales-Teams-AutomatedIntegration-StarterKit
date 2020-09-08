@@ -23,10 +23,7 @@ variables:
   SolutionName: CustomTeamsIntegration
   EnvironmentVariableValuesFilePath: $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\EnvironmentVariables\environment_variable_values.json
   SolutionXmlFilePath: $(Build.SourcesDirectory)\SolutionsUnpacked\$(SolutionName)\Other\Solution.xml
-  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/') }}:
-    branchName: $[ replace(variables['Build.SourceBranch'], 'refs/heads/', '') ]
-  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
-    branchName: $[ replace(variables['System.PullRequest.SourceBranch'], 'refs/heads/', '') ]
+  branchName: $[ replace(variables['System.PullRequest.SourceBranch'], 'refs/heads/', '') ]
 
 stages:
 # Stage for:
@@ -34,7 +31,7 @@ stages:
 # - echo variables
 - stage: 'Initialization'
   displayName: 'Initialize pipeline'
-  condition: and(succeeded(), not(startsWith(variables['branchName'], 'Workflows')))
+  condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/')), not(startsWith(variables['branchName'], 'Workflows')))
   jobs:
     - job: 'Initialization'
       displayName: 'Initialization job'
@@ -52,6 +49,8 @@ stages:
 # - the execution of the solution checker on the pack unmanaged solution
 - stage: 'SolutionCheck'
   displayName: 'Power Platform Solution Check'
+  dependsOn: Initialization
+  condition: succeeded()
   jobs:
     - job: 'SolutionCheck'
       displayName: 'SolutionCheck job'
