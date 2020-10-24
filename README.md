@@ -36,8 +36,8 @@ So, if you want to leverage collaboration to improve your sales, this starter ki
 ## Prerequisites
 
 - An environment with Dynamics 365 Sales installed
-- Enable **Microsoft Teams integration** feature in the **Settings** section of the **Sales Hub** appliction
-- Enable **Enable Enhanced Microsoft Teams integration (requires tenant admin permissions)** in *Settings > Administration > System Settings > General > Microsoft Teams Integration*
+- Enable the **Microsoft Teams integration** feature in the **Settings** section of the **Sales Hub** appliction
+- Enable the **Enable Enhanced Microsoft Teams integration (requires tenant admin permissions)** option in *Settings > Administration > System Settings > General > Microsoft Teams Integration*
 - An application registered in Azure Active Directory with the **Microsoft Graph** permissions below:
     - Channel.Create
     - Group.Read.All
